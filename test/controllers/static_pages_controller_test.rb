@@ -1,25 +1,21 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  def setup
-    @base_title = 'BluelinerTippspiel'
-  end
-
   test 'should get home' do
     get static_pages_home_url
     assert_response :success
-    assert_select 'title', "Home | #{@base_title}"
+    assert_select 'title', 'Blueliner Tippspiel'
   end
 
   test 'should get help' do
     get static_pages_help_url
     assert_response :success
-    assert_select 'title', "Hilfe | #{@base_title}"
+    assert_select 'title', 'Hilfe | Blueliner Tippspiel'
   end
 
   test 'should get rules' do
     get static_pages_rules_url
     assert_response :success
-    assert_select 'title', "Regeln | #{@base_title}"
+    assert_select 'title', 'Regeln | Blueliner Tippspiel'
   end
 end

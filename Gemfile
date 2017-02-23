@@ -37,7 +37,11 @@ group :development, :test do
   gem 'byebug',                 '9.0.0', platform: :mri
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3',                '1.3.12'
+end
+
+group :test do
   gem 'capybara'
+  gem 'minitest-reporters',     '1.1.9'
 end
 
 group :development do
