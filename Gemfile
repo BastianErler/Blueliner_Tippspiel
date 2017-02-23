@@ -31,7 +31,8 @@ gem 'jbuilder',                 '2.4.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'listen'
+gem 'bootstrap-sass',           '3.3.6'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug',                 '9.0.0', platform: :mri
@@ -47,7 +48,6 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console',            '3.1.1'
-  gem 'listen',                 '3.0.8'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring',                   '1.7.2'
   gem 'rails-controller-testing', '0.1.1'
