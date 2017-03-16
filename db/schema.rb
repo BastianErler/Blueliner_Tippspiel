@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225151230) do
+ActiveRecord::Schema.define(version: 20170312112637) do
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "game_number"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.datetime "game_date"
+    t.integer  "home_goals"
+    t.integer  "away_goals"
+    t.integer  "season_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "season_name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "team_logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tips", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.integer  "home_goals"
+    t.integer  "away_goals"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170225151230) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean  "guest",             default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

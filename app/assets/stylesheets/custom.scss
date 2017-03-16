@@ -27,6 +27,25 @@ textarea {
   border-color: #090909;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #851a29;
+  border-color: #851a29;
+}
+
+.btn:hover
+{
+    background-image:none !important;
+    background-color:#851a29 !important;
+    border-color: #851a29 !important;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #851a29;
+    border-color: #851a29;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
