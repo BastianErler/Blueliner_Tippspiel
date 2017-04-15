@@ -1,0 +1,25 @@
+<% provide(:title, 'Spiele') %>
+<h1>Alle Spiele</h1>
+
+
+
+<%= will_paginate %>
+
+<ul class="games">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td> Spiel Nr. </td>
+        <td> Datum </td>
+        <td> Heimmannschaft </td>
+        <td> Auswärtsmannschaft </td>
+        <td> Ergebniss </td>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @games %>
+    </tbody>
+  </table>
+</ul>
+
+<%= will_paginate %>

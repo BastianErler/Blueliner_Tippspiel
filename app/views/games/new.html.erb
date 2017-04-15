@@ -1,0 +1,19 @@
+<% provide(:title, 'Neues Spiel') %>
+<h1>Neues Spiel anlegen</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= bootstrap_form_for(@game) do |f| %>
+
+    <%= f.text_field :game_number, layout: :default, label: 'Spiel Nr.' %>
+
+    <%= f.datetime_select :game_date, {class: 'datetimepicker'}, label: 'Spieltag'%>
+
+    <%= f.select :home_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Heimmannschaft" %>
+
+    <%= f.select :away_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Auswärtsmannschaft" %>
+
+      <%= f.submit "Spiel erstellen", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

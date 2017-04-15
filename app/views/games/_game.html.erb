@@ -1,0 +1,13 @@
+  <tr onclick="location.href='<%= edit_game_url(game) %>'">
+    <td> <%= game.game_number %> </td>
+    <td> <%= game.game_date.localtime.to_formatted_s(:deutsch)  %> </td>
+    <td> <% home_team = Team.find_by(id: game.home_team_id)%>
+      <%= image_tag("#{home_team.team_logo}", :alt => "Team Logo", size: "35") %>
+      <%= home_team.name %>
+    </td>
+    <td> <% away_team = Team.find_by(id: game.away_team_id)%>
+      <%= image_tag("#{away_team.team_logo}", :alt => "Team Logo", size: "35") %>
+      <%= away_team.name %>
+    </td>
+    <td> <%= (game.home_goals.to_s + " : " + game.away_goals.to_s) if game.home_goals.present?%> </td>
+  </tr>
