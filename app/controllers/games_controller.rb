@@ -1,4 +1,7 @@
 class GamesController < ApplicationController
+  before_action :logged_in_user, only: [:index]
+  before_action :admin_user,     only: :new
+
   def index
     @games = Game.paginate(page: params[:page])
   end
