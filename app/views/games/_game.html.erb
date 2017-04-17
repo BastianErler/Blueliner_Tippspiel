@@ -1,6 +1,6 @@
   <tr>
     <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= game.game_number %> </td>
-    <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= game.game_date.localtime.to_formatted_s(:deutsch)  %> </td>
+    <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= game.game_date.to_formatted_s(:deutsch)  %> </td>
     <td onclick="location.href='<%= edit_tip_url(game) %>'"> <% home_team = Team.find_by(id: game.home_team_id)%>
       <%= image_tag("#{home_team.team_logo}", :alt => "Team Logo", size: "35") %>
       <%= home_team.name %>
