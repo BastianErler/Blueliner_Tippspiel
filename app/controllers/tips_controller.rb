@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
   def edit
-    @tip = Tip.find_by(game_id: params[:id], user_id: current_user.id)
+    @tip = Tip.find_or_create_by(game_id: params[:id], user_id: current_user.id)
     @game = Game.find_by(id: params[:id])
     @home_team = Team.find_by(id: @game.home_team_id)
     @away_team = Team.find_by(id: @game.away_team_id)

@@ -1,3 +1,26 @@
+<%  if logged_in? %>
+<div class='center jumbotron'>
+  <h1>Blueliner Tippspiel</h1>
+  <h2>
+      Das aktuelle Spiel ist:
+  </h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td> Spiel Nr. </td>
+        <td> Datum </td>
+        <td> Heimmannschaft </td>
+        <td> Auswärtsmannschaft </td>
+        <td> Tipp </td>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @game %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+
 <div class='center jumbotron'>
   <h1>Blueliner Tippspiel</h1>
 
@@ -8,4 +31,4 @@
   <%= link_to 'Registrier dich jetzt!', signup_path, class: 'btn btn-lg btn-primary' %>
 </div>
 
-<!-- <%= link_to image_tag("BLlogo.jpg", alt: 'Blueliner Berlin logo'), '#' %> -->
+<% end %>
