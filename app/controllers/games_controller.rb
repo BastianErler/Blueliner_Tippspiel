@@ -1,9 +1,9 @@
 class GamesController < ApplicationController
   before_action :logged_in_user, only: [:index]
-  before_action :admin_user,     only: :new
+  before_action :admin_user,     only: [:new, :edit]
 
   def index
-    @games = Game.paginate(page: params[:page])
+    @games = Game.paginate(page: params[:page], per_page: 10).order('id DESC')
   end
 
   def show
@@ -11,14 +11,17 @@ class GamesController < ApplicationController
   end
 
   def new
-    @game = Game.new()
+    @game = Game.new
   end
 
   def create
     @game = Game.new(game_params)
     # binding.pry
     if @game.save
-      flash[:info] = "Das Spiel wurde erstellt"
+      User.all.each do |user|
+        Tip.create(game_id: @game.id, user_id: user.id)
+      end
+      flash[:info] = 'Das Spiel wurde erstellt'
       redirect_to games_path
     else
       render 'new'
@@ -32,8 +35,7 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if @game.update_attributes(game_params)
-      binding.pry
-      flash[:success] = "Spiel geändert"
+      flash[:success] = 'Spiel geändert'
       redirect_to games_path
     else
       render 'edit'

@@ -1,8 +1,6 @@
 <% provide(:title, 'Spiele') %>
 <h1>Alle Spiele</h1>
 
-
-
 <%= will_paginate %>
 
 <ul class="games">
@@ -14,12 +12,16 @@
         <td> Heimmannschaft </td>
         <td> Auswärtsmannschaft </td>
         <td> Ergebniss </td>
+        <td> Tipp </td>
       </tr>
     </thead>
     <tbody>
       <%= render @games %>
     </tbody>
   </table>
+  <% if current_user.admin? %>
+    <%= button_to "Neues Spiel", {controller: "games", action: "new"}, class: "btn btn-primary" , method: :get%>
+  <% end %>
 </ul>
 
 <%= will_paginate %>
