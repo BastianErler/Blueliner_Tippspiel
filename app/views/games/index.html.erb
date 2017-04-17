@@ -13,6 +13,9 @@
         <td> Auswärtsmannschaft </td>
         <td> Ergebniss </td>
         <td> Tipp </td>
+        <% if current_user.admin? %>
+          <td> Edit </td>
+        <%end%>
       </tr>
     </thead>
     <tbody>
