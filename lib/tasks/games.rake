@@ -11,9 +11,30 @@ namespace :games do
           @spiel.push(row.strip)
         end
       end
-      binding.pry
+      game_datetime = DateTime.strptime((@spiel[0] + " " + @spiel[1]), '%d.%m.%Y %H:%M')
+      home_team = Team.find_by(name: @spiel[2])
+      away_team = Team.find_by(name: @spiel[3])
+
+      if Game.first.nil?
+        game_number = 1
+        current_game = true
+      else
+        game_number = Game.last.game_number.to_i + 1
+        current_game = false
+      end
+
+      if game_datetime.present? && home_team.present? && away_team.present?
+        if Game.find_by(game_date: game_datetime, home_team_id: home_team.id, away_team_id: away_team.id).nil?
+          Game.create(game_date:    game_datetime,
+                      home_team_id: home_team.id,
+                      away_team_id: away_team.id,
+                      game_number:  game_number,
+                      current:      current_game)
+        else
+          # TODO:
+        end
+      end
     end
-    puts page.title
   end
 
   task :close => :environment do

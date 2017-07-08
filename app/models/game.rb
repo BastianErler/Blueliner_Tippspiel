@@ -4,5 +4,5 @@ class Game < ApplicationRecord
   validates :away_team_id, presence: true
 
   has_many :tips
-  belongs_to :season
+  # belongs_to :season
 end
