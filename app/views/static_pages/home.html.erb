@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <% @homepage = true %>
-      <%= render @game %>
+      <%= render @game if @game.present?%>
     </tbody>
   </table>
 </div>
