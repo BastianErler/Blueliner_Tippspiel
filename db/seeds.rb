@@ -5,14 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             admin: true,
-             activated: true,
-             guest: true,
-             activated_at: Time.zone.now)
 
 Team.create!(name:  'Augsburger Panther',
              team_logo: 'team_AUG.png')
@@ -44,7 +36,7 @@ Team.create!(name:  'Adler Mannheim',
 Team.create!(name:  'EHC Red Bull München',
              team_logo: 'team_MUC.png')
 
-Team.create!(name:  'Thomas Sabo IceTigers',
+Team.create!(name:  'Thomas Sabo Ice Tigers',
              team_logo: 'team_NIT.png')
 
 Team.create!(name:  'Straubingen Tigers',

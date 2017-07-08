@@ -1,5 +1,21 @@
 # require 'rest-client'
+require 'mechanize'
 namespace :games do
+  task :read => :environment do
+    mechanize = Mechanize.new
+    mechanize.get('http://www.eisbaeren.de/spielplan-tabelle/spielplan').search("#content .news_list.event_list .entry .info").each do |game|
+      @spiel = []
+      reader = Nokogiri::XML::Reader(game)
+      reader.source.gsub("\t", " ").split("\n").each do |row|
+        if row.present?
+          @spiel.push(row.strip)
+        end
+      end
+      binding.pry
+    end
+    puts page.title
+  end
+
   task :close => :environment do
     Game.where(state: 'open').each do |game|
       if game.game_date < Time.now.utc

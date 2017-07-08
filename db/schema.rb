@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170624111300) do
     t.string   "state",        default: "open"
     t.boolean  "current",      default: false
     t.boolean  "evaluated",    default: false
+    t.index ["season_id"], name: "index_games_on_season_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170624111300) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.decimal  "price",      precision: 5, scale: 2
+    t.index ["game_id", "user_id"], name: "index_tips_on_game_id_and_user_id"
   end
 
   create_table "users", force: :cascade do |t|

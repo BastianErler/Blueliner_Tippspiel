@@ -40,6 +40,7 @@ gem 'bootstrap_form'
 gem 'bootstrap-table-rails'
 gem 'pry'
 gem 'airbrake', '~> 6.1'
+gem 'mechanize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
