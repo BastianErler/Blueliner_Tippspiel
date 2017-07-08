@@ -240,6 +240,7 @@ DEPENDENCIES
   listen
   mechanize
   minitest-reporters (= 1.1.9)
+  nokogiri
   pg (= 0.18.4)
   pry
   puma (= 3.4.0)
