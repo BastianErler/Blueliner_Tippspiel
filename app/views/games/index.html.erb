@@ -3,28 +3,30 @@
 
 <%= will_paginate %>
 
-<ul class="games">
+
+  <div class="table-responsive">
   <table class="table table-hover">
     <thead>
       <tr>
-        <td> Spiel Nr. </td>
-        <td> Datum </td>
-        <td> Heimmannschaft </td>
-        <td> Auswärtsmannschaft </td>
-        <td> Ergebniss </td>
-        <td> Tipp </td>
+        <td>Spiel</td>
+        <td>Datum</td>
+        <td>H</td>
+        <td>A</td>
+        <td>Ergebniss</td>
+        <td>Tipp</td>
         <% if current_user.admin? %>
           <td> Edit </td>
         <%end%>
       </tr>
     </thead>
     <tbody>
+      <% @homepage = false %>
       <%= render @games %>
     </tbody>
   </table>
+</div>
   <% if current_user.admin? %>
     <%= button_to "Neues Spiel", {controller: "games", action: "new"}, class: "btn btn-primary" , method: :get%>
   <% end %>
-</ul>
 
 <%= will_paginate %>

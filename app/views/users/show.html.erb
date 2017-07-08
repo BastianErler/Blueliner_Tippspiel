@@ -1,10 +1,38 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-8">
     <section class="user_info">
       <h1>
         <%= @user.name %>
+        <% @deposit_sum = 0 %>
       </h1>
+      <br>
+      <h2>
+        Einzahlungen
+      </h2>
+      <table class="table table-hover">
+       <tr>
+         <th>Datum</th>
+         <th>Eingezahlt von</th>
+         <th>Kommentar</th>
+         <th>Betrag</th>
+       </tr>
+       <tr>
+      <% @user.deposits.each do |deposit| %>
+         <td><%= deposit.created_at %></td>
+         <td><%= User.find_by_id(deposit.creater_id).name %></td>
+         <td><%= deposit.comment %></td>
+         <td><%= deposit.amount %></td>
+         <% @deposit_sum += deposit.amount %>
+       </tr>
+       <% end %>
+       <tr>
+         <td></td>
+         <td></td>
+         <td><b>Summe: </b></td>
+         <td><%= @deposit_sum %></td>
+       </tr>
+       </table>
     </section>
-  </table>
+  </aside>
 </div>

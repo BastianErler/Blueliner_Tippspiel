@@ -6,6 +6,7 @@ class CreateTips < ActiveRecord::Migration[5.0]
       t.integer   :home_goals
       t.integer   :away_goals
 
+
       t.timestamps
     end
     add_index :tips, [:game_id, :user_id]

@@ -10,6 +10,7 @@ namespace :games do
           new_cur.current = true
           game.current = false
           new_cur.save
+          game.save
         end
       end
     end
@@ -19,6 +20,19 @@ namespace :games do
     Game.where(evaluated: false).each do |game|
       if (game.home_goals.present? and game.away_goals.present?)
         puts 'evaluating...'
+        game.tips.each do |tip|
+          if tip.home_goals.nil? && tip.away_goals.nil?
+            tip.price = 2
+          elsif game.home_goals == tip.home_goals && game.away_goals == tip.away_goals
+            tip.price = 0
+          elsif ((game.home_goals > game.away_goals) && (tip.home_goals > tip.away_goals)) || ((game.home_goals < game.away_goals) && (tip.home_goals < tip.away_goals))
+            diff = (game.home_goals - tip.home_goals).abs + (game.away_goals - tip.away_goals).abs
+            tip.price = diff * 0.20
+          else
+            tip.price = 1
+          end
+          tip.save
+        end
         game.evaluated = true
         game.save
       end

@@ -7,10 +7,8 @@
     <table class="table" style="table-layout:fixed" horizontal-align="center">
       <thead>
         <tr>
-          <td style="width:350px;"> Heimmannschaft </td>
-          <td style="width:50px;"> H-Tore</td>
-          <td style="width:50px;" align="right"> A-Tore</td>
-          <td style="width:350px;" align="right"> Auswärtsmannschaft </td>
+          <td > Heimmannschaft </td>
+          <td align="right"> Auswärtsmannschaft </td>
         </tr>
       </thead>
       <tbody>
@@ -19,15 +17,17 @@
             <%= image_tag("#{@home_team.team_logo}", :alt => "Team Logo", size: "35") %>
             <%= @home_team.name %>
           </td>
+          <td align="right">
+            <%= image_tag("#{@away_team.team_logo}", :alt => "Team Logo", size: "35") %>
+            <%= @away_team.name %>
+          </td>
+        </tr>
+        <tr>
           <td>
             <%= f.number_field :home_goals, hide_label: true%>
           </td>
           <td align="right">
             <%= f.number_field :away_goals, hide_label: true%>
-          </td>
-          <td align="right">
-            <%= image_tag("#{@away_team.team_logo}", :alt => "Team Logo", size: "35") %>
-            <%= @away_team.name %>
           </td>
         </tr>
       </tbody>

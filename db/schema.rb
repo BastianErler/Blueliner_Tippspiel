@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417103739) do
+ActiveRecord::Schema.define(version: 20170624111300) do
+
+  create_table "deposits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "creater_id"
+    t.decimal  "amount",     precision: 5, scale: 2
+    t.string   "comment"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer  "game_number"
@@ -47,8 +56,9 @@ ActiveRecord::Schema.define(version: 20170417103739) do
     t.integer  "user_id"
     t.integer  "home_goals"
     t.integer  "away_goals"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "price",      precision: 5, scale: 2
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,6 +75,8 @@ ActiveRecord::Schema.define(version: 20170417103739) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean  "guest",             default: false
+    t.decimal  "sum_money_in"
+    t.decimal  "sum_money_out"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

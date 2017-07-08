@@ -4,20 +4,23 @@
   <h2>
       Das aktuelle Spiel ist:
   </h2>
+  <div class="table-responsive">
   <table class="table table-hover">
     <thead>
       <tr>
-        <td> Spiel Nr. </td>
+        <td> Spiel </td>
         <td> Datum </td>
-        <td> Heimmannschaft </td>
-        <td> Auswärtsmannschaft </td>
+        <td> H </td>
+        <td> A </td>
         <td> Tipp </td>
       </tr>
     </thead>
     <tbody>
+      <% @homepage = true %>
       <%= render @game %>
     </tbody>
   </table>
+</div>
 </div>
 <% else %>
 

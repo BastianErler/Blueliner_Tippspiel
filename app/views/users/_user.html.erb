@@ -1,5 +1,9 @@
 <li>
   <%= link_to user.name, user %>
+  <% if current_user.admin? %>
+    | <%= link_to "einzahlen", new_deposit_path(user.id) %>
+  <% end %>
+
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "löschen", user, method: :delete,
                                   data: { confirm: "Sind sie sicher?" } %>

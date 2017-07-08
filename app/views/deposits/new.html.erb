@@ -1,0 +1,19 @@
+<% provide(:title, 'Einzahlung') %>
+<h1>Neues Einzahlung für <%= @user.name %></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= bootstrap_form_for(@deposit) do |f| %>
+
+      <%= f.hidden_field :user_id, hidden: true %>
+
+      <%= f.hidden_field :creater_id, hidden: true  %>
+
+      <%= f.text_field :comment %>
+
+      <%= f.number_field :amount, min: 0, step: 0.1 %>
+
+      <%= f.submit "Einzahlen", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
