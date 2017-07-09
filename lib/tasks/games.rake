@@ -39,7 +39,7 @@ namespace :games do
 
   task :close => :environment do
     Game.where(state: 'open').each do |game|
-      if game.game_date < Time.now.utc
+      if game.game_date - 6.hours < Time.now.utc
         game.state = 'closed'
         game.save
         if game.current?
