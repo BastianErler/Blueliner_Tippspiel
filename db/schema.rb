@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 20170624111300) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean  "guest",             default: false
-    t.decimal  "sum_money_in"
-    t.decimal  "sum_money_out"
+    t.decimal  "sum_money_in",      default: "0.0"
+    t.decimal  "sum_money_out",     default: "0.0"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

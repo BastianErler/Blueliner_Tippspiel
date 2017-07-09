@@ -69,6 +69,8 @@ namespace :games do
             tip.price = 1
           end
           tip.save
+          tip.user.sum_money_out = tip.user.tips.sum(:price)
+          tip.user.save
         end
         game.evaluated = true
         game.save

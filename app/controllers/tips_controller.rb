@@ -1,4 +1,7 @@
 class TipsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit]
+  before_action :admin_user,     only: [:new, :edit]
+
   def edit
     @tip = Tip.find_or_create_by(game_id: params[:id], user_id: current_user.id)
     @game = Game.find_by(id: params[:id])

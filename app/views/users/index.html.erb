@@ -1,10 +1,22 @@
 <% provide(:title, 'All users') %>
 <h1>Alle Tipper</h1>
-
-<%= will_paginate %>
-
-<ul class="users">
+<div class="table-responsive">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Platz</td>
+      <td>Name</td>
+      <td>Kosten</td>
+      <% if current_user.admin? %>
+        <td> Einzahlen </td>
+        <td> Löschen </td>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @place = 1 %>
+    <% @price = 0 %>
     <%= render @users %>
-</ul>
-
-<%= will_paginate %>
+  </tbody>
+</table>
+</div>

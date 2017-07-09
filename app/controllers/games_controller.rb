@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :logged_in_user, only: [:index]
+  before_action :logged_in_user, only: [:index, :show]
   before_action :admin_user,     only: [:new, :edit]
 
   def index
@@ -8,6 +8,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @tips = @game.tips.all
   end
 
   def new

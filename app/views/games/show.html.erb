@@ -1,0 +1,26 @@
+<% provide(:title, 'Spiel') %>
+<h1 class="text-center"><% home_team = Team.find_by(id: @game.home_team_id)%>
+    <%= image_tag("#{home_team.team_logo}", :alt => "Team Logo", size: "100") + ' : '%>
+    <% away_team = Team.find_by(id: @game.away_team_id)%>
+    <%= image_tag("#{away_team.team_logo}", :alt => "Team Logo", size: "100") %> </h1>
+    <h1 class="text-center"><%= @game.home_goals.to_s + ' : ' + @game.away_goals.to_s %></h1>
+    <br>
+    <h3 class="text-center"><%= @game.game_date.utc.to_formatted_s(:short_deutsch) %> </h3>
+    <br>
+
+<% if @game.state == 'closed' %>
+    <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>Tipper</td>
+          <td>Tipp</td>
+          <td>Kosten</td>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @tips %>
+      </tbody>
+    </table>
+  </div>
+<%end%>
