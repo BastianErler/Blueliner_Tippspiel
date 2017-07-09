@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit]
+  before_action :logged_in_user, only: [:edit]
   before_action :admin_user,     only: [:new, :edit]
 
   def edit
