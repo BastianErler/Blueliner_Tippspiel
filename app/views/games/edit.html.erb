@@ -9,9 +9,9 @@
 
       <%= f.datetime_select :game_date, {class: 'datetimepicker'}, label: 'Spieltag'%>
 
-      <%= f.select :home_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "H" %>
+      <%= f.select :home_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Heim" %>
 
-      <%= f.select :away_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "A" %>
+      <%= f.select :away_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Auswärts" %>
 
       <%= f.submit "Spiel ändern", class: "btn btn-primary" %>
     <% end %>

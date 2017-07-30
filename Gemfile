@@ -31,30 +31,33 @@ gem 'bcrypt',                   '3.1.11'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'listen'
-gem 'bootstrap-sass',           '3.3.6'
-gem 'faker',                    '1.6.6'
-gem 'will_paginate',            '3.1.0'
-gem 'bootstrap-will_paginate',  '0.0.10'
-gem 'bootstrap_form'
-gem 'bootstrap-table-rails'
-gem 'pry'
 gem 'airbrake', '~> 6.1'
+gem 'bootstrap_form'
+
+gem 'bootstrap-sass', '3.3.6'
+gem 'bootstrap-table-rails'
+gem 'bootstrap-will_paginate', '0.0.10'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'faker', '1.6.6'
+gem 'listen'
 gem 'mechanize'
+gem 'momentjs-rails', '>= 2.9.0'
 gem 'nokogiri'
+gem 'pry'
+gem 'will_paginate', '3.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug',                 '9.0.0', platform: :mri
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3',                '1.3.12'
-  gem 'rails-controller-testing', '0.1.1'
   gem 'letter_opener'
+  gem 'rails-controller-testing', '0.1.1'
+  gem 'sqlite3',                '1.3.12'
 end
 
 group :test do
   gem 'capybara'
-  gem 'minitest-reporters',     '1.1.9'
+  gem 'minitest-reporters', '1.1.9'
 end
 
 group :development do
@@ -66,7 +69,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg',                     '0.18.4'
+  gem 'pg', '0.18.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
