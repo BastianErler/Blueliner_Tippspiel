@@ -7,7 +7,7 @@
 
     <%= f.text_field :game_number, layout: :default, label: 'Spiel Nr.' %>
 
-    <%= f.datetime_select :game_date, {class: 'datetimepicker'}, label: 'Spieltag'%>
+    <%= f.datetime_select :game_date, label: 'Spiel Tag/Zeit', :minute_step => 15%>
 
     <%= f.select :home_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Heimmannschaft" %>
 

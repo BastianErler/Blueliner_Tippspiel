@@ -21,6 +21,28 @@
     </tbody>
   </table>
 </div>
+<% if @game_without_score.present? %>
+<h2>
+    Ergebnis eintragen:
+</h2>
+<div class="table-responsive">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td> Spiel </td>
+      <td> Datum </td>
+      <td> H </td>
+      <td> A </td>
+      <td> Tipp </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @homepage = true %>
+    <%= render @game_without_score %>
+  </tbody>
+</table>
+</div>
+<% end %>
 </div>
 <% else %>
 
@@ -32,6 +54,7 @@
   </h2>
 
   <%= link_to 'Registrier dich jetzt!', signup_path, class: 'btn btn-lg btn-primary' %>
+
 </div>
 
 <% end %>

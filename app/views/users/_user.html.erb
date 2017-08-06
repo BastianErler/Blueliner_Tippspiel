@@ -9,9 +9,10 @@
   <% if current_user.admin? %>
      <td><%= link_to "einzahlen", new_deposit_path(user.id) %></td>
   <% end %>
-
+  <td>
   <% if current_user.admin? && !current_user?(user) %>
-    <td><%= link_to "löschen", user, method: :delete,
-                                  data: { confirm: "Sind sie sicher?" } %></td>
+    <%= link_to "löschen", user, method: :delete,
+                                  data: { confirm: "Sind sie sicher?" } %>
   <% end %>
+  </td>
 </tr>

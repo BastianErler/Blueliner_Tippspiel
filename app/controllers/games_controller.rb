@@ -4,6 +4,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.paginate(page: params[:page], per_page: 10).order('id DESC')
+    @user = current_user
   end
 
   def show
@@ -17,7 +18,6 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    # binding.pry
     if @game.save
       User.all.each do |user|
         Tip.create(game_id: @game.id, user_id: user.id)
@@ -46,6 +46,11 @@ class GamesController < ApplicationController
   private
 
     def game_params
-      params.require(:game).permit(:game_number, :game_date, :home_team_id, :away_team_id)
+      params.require(:game).permit(:game_number,
+                                   :game_date,
+                                   :home_team_id,
+                                   :away_team_id,
+                                   :home_goals,
+                                   :away_goals)
     end
 end

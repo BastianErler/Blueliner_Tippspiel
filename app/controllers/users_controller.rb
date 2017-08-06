@@ -3,11 +3,16 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   def index
-    @users = User.all.order(sum_money_out: :DESC)
+    @users = User.all.order(sum_money_out: :ASC)
   end
 
   def show
     @user = User.find(params[:id])
+    @deposits = @user.deposits.all
+    @tip_kosts = @user.tips.sum(:price)
+    @deposits_sum = @user.deposits.sum(:amount)
+    @open = @deposits_sum - @tip_kosts
+    @games = Game.where(state: 'closed').all
   end
 
   def new

@@ -4,15 +4,38 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= bootstrap_form_for(@game) do |f| %>
+      <% readonly = false %>
+      <% readonly = true if @game.state == 'open' %>
 
-      <%= f.text_field :game_number, layout: :default, label: 'Spiel Nr.' %>
+      <%= f.text_field :game_number, layout: :default, label: 'Spiel Nr.', readonly: true%>
 
-      <%= f.datetime_select :game_date, {class: 'datetimepicker'}, label: 'Spieltag'%>
+      <%= f.datetime_select :game_date, {class: 'datetimepicker'}, label: 'Spieltag', readonly: true%>
 
-      <%= f.select :home_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Heim" %>
+      <%= f.select :home_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Heim", readonly: true %>
 
-      <%= f.select :away_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Auswärts" %>
+      <%= f.select :away_team_id, Team.all.collect {|u| [u.name, u.id]}, :prompt => 'Mannschaft auswählen', label: "Auswärts", readonly: true %>
 
+      <% if @game.state == 'closed' %>
+      <p> <b>Tore Eingeben</b> </p>
+        <table class="table" style="table-layout:fixed" horizontal-align="center">
+          <thead>
+            <tr>
+              <td > Heimmannschaft </td>
+              <td align="right"> Auswärtsmannschaft </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= f.number_field :home_goals, hide_label: true%>
+              </td>
+              <td align="right">
+                <%= f.number_field :away_goals, hide_label: true%>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
       <%= f.submit "Spiel ändern", class: "btn btn-primary" %>
     <% end %>
   </div>

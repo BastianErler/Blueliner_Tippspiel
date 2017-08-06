@@ -7,11 +7,13 @@
     <td onclick="location.href='<%= edit_tip_url(game) %>'"> <% away_team = Team.find_by(id: game.away_team_id)%>
       <%= image_tag("#{away_team.team_logo}", :alt => "Team Logo", size: "35") %>
     </td>
+    <% tip = Tip.find_by(game_id: game.id, user_id: @user.id) %>
+   <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= (tip.home_goals.to_s + " : " + tip.away_goals.to_s) if (tip.present? and tip.home_goals.present? )%> </td>
+
     <% if @homepage == false %>
+      <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= tip.price.to_s + " €" if game.evaluated? %> </td>
       <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= (game.home_goals.to_s + " : " + game.away_goals.to_s) if game.home_goals.present? %> </td>
     <% end %>
-    <% tip = Tip.find_by(game_id: game.id, user_id: current_user.id) %>
-   <td onclick="location.href='<%= edit_tip_url(game) %>'"> <%= (tip.home_goals.to_s + " : " + tip.away_goals.to_s) if (tip.present? and tip.home_goals.present? )%> </td>
    <% if current_user.admin? %>
      <td><%= link_to "edit", edit_game_url(game)  %></td>
    <%end%>

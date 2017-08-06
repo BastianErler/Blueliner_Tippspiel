@@ -4,7 +4,6 @@
     <section class="user_info">
       <h1>
         <%= @user.name %>
-        <% @deposit_sum = 0 %>
       </h1>
       <br>
       <h2>
@@ -18,21 +17,55 @@
          <th>Betrag</th>
        </tr>
        <tr>
-      <% @user.deposits.each do |deposit| %>
+      <% @deposits.each do |deposit| %>
          <td><%= deposit.created_at %></td>
          <td><%= User.find_by_id(deposit.creater_id).name %></td>
          <td><%= deposit.comment %></td>
-         <td><%= deposit.amount %></td>
-         <% @deposit_sum += deposit.amount %>
+         <td><%= deposit.amount.to_s + " €" %></td>
        </tr>
        <% end %>
        <tr>
          <td></td>
          <td></td>
          <td><b>Summe: </b></td>
-         <td><%= @deposit_sum %></td>
+         <td><%= @deposits_sum.to_s + " €" %></td>
+       </tr>
+       <tr>
+         <td></td>
+         <td></td>
+         <td><b>Tipp Kosten: </b></td>
+         <td><%= @tip_kosts.to_s + " €" %></td>
+       </tr>
+       <tr>
+         <td></td>
+         <td></td>
+         <td><b>Saldo: </b></td>
+         <td><%= @open.to_s + " €" %></td>
        </tr>
        </table>
+
+         <div class="table-responsive">
+         <table class="table table-hover">
+           <thead>
+             <tr>
+               <td>Spiel</td>
+               <td>Datum</td>
+               <td>H</td>
+               <td>A</td>
+               <td>Tipp</td>
+               <td>Kosten</td>
+               <td>Ergebnis</td>
+               <% if current_user.admin? %>
+                 <td> Edit </td>
+               <%end%>
+             </tr>
+           </thead>
+           <tbody>
+             <% @homepage = false %>
+             <%= render @games %>
+           </tbody>
+         </table>
+       </div>
     </section>
   </aside>
 </div>
