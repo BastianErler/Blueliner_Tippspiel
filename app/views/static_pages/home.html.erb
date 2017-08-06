@@ -21,7 +21,7 @@
     </tbody>
   </table>
 </div>
-<% if @game_without_score.present? %>
+<% if @game_without_score.present? && current_user.admin?%>
 <h2>
     Ergebnis eintragen:
 </h2>

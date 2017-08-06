@@ -6,6 +6,7 @@
         <%= @user.name %>
       </h1>
       <br>
+      <% if current_user.admin? || @user == current_user %>
       <h2>
         Einzahlungen
       </h2>
@@ -43,6 +44,7 @@
          <td><%= @open.to_s + " €" %></td>
        </tr>
        </table>
+       <% end %>
 
          <div class="table-responsive">
          <table class="table table-hover">
