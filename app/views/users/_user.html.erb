@@ -7,7 +7,9 @@
   <td> <%= link_to user.name, user %> </td>
   <td> <%= user.sum_money_out.to_s + ' €'%> </td>
   <% if current_user.admin? %>
-     <td><%= link_to "einzahlen", new_deposit_path(user.id) %></td>
+    <td> <%= user.sum_money_in.to_s + ' €'%> </td>
+    <td> <%= (user.sum_money_in-user.sum_money_out).to_s + ' €'%> </td>
+    <td><%= link_to "einzahlen", new_deposit_path(user.id) %></td>
   <% end %>
   <td>
   <% if current_user.admin? && !current_user?(user) %>
