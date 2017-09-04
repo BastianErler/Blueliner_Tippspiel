@@ -18,7 +18,7 @@ class TipsController < ApplicationController
   def update
     @tip = Tip.find(params[:id])
     if @tip.update_attributes(tip_params)
-      flash[:success] = 'Tip gespeichert'
+      flash[:success] = 'Tipp gespeichert'
       redirect_to games_path
     else
       render 'edit'
