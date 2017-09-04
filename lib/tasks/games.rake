@@ -24,7 +24,7 @@ namespace :games do
         puts 'evaluating...'
         game.tips.each do |tip|
           if tip.home_goals.nil? && tip.away_goals.nil?
-            tip.price = 2
+            tip.price = 1
           elsif game.home_goals == tip.home_goals && game.away_goals == tip.away_goals
             tip.price = 0
           elsif ((game.home_goals > game.away_goals) && (tip.home_goals > tip.away_goals)) ||
