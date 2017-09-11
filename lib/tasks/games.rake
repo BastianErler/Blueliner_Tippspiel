@@ -6,6 +6,7 @@ namespace :games do
     Game.where(state: 'open').each do |game|
       if game.game_date - 6.hours < Time.now
         game.state = 'closed'
+
         game.save
         if game.current?
           new_cur = Game.where("game_date > ?", Time.now).order("game_date ASC").limit(1).first
@@ -31,7 +32,7 @@ namespace :games do
              ((game.home_goals < game.away_goals) && (tip.home_goals < tip.away_goals))
             diff = (game.home_goals - tip.home_goals).abs +
              (game.away_goals - tip.away_goals).abs
-            tip.price = diff * 0.20
+            tip.price = [diff * 0.20, 0.80].min
           else
             tip.price = 1
           end
