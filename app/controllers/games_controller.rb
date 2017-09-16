@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :logged_in_user, only: [:index, :show]
-  before_action :admin_user,     only: [:new, :edit]
+  before_action :admin_user, only: [:new, :edit]
 
   def index
     @games = Game.paginate(page: params[:page], per_page: 10).order('id DESC')
@@ -45,12 +45,12 @@ class GamesController < ApplicationController
 
   private
 
-    def game_params
-      params.require(:game).permit(:game_number,
-                                   :game_date,
-                                   :home_team_id,
-                                   :away_team_id,
-                                   :home_goals,
-                                   :away_goals)
-    end
+  def game_params
+    params.require(:game).permit(:game_number,
+                                 :game_date,
+                                 :home_team_id,
+                                 :away_team_id,
+                                 :home_goals,
+                                 :away_goals)
+  end
 end

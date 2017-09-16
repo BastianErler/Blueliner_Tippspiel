@@ -27,7 +27,7 @@ class TipsController < ApplicationController
 
   private
 
-    def tip_params
-      params.require(:tip).permit(:home_goals, :away_goals)
-    end
+  def tip_params
+    params.require(:tip).permit(:home_goals, :away_goals)
+  end
 end
