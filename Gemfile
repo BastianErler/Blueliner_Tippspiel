@@ -40,9 +40,9 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'nokogiri'
 gem 'pry'
 gem 'will_paginate', '3.1.0'
+gem 'airbrake', '~> 6.1'
 
 group :development, :test do
-  gem 'airbrake', '~> 6.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '9.0.0', platform: :mri
   # Use sqlite3 as the database for Active Record
