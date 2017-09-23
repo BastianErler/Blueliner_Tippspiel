@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @tip_kosts = @user.tips.sum(:price)
     @deposits_sum = @user.deposits.sum(:amount)
     @open = @deposits_sum - @tip_kosts
-    @games = Game.where(state: 'closed').all.order(game_number: :ASC)
+    @games = Game.where(state: 'closed').all.order(game_date: :ASC)
   end
 
   def new
