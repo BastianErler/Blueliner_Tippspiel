@@ -30,8 +30,12 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
-  def sum_tip_prices
+  def tips_sum
     tips.sum(:price)
+  end
+
+  def deposits_sum
+    deposits.sum(:amount)
   end
 
   # Returns a random token.
