@@ -1,33 +1,37 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token
   attr_accessor :remember_token, :activation_token, :reset_token
-  before_save   :downcase_email
+  before_save :downcase_email
   before_create :create_activation_digest
 
   has_many :tips
   has_many :deposits
 
-  before_save { email.downcase! }
+  before_save {email.downcase!}
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-  validates :name, presence: true, length: { maximum: 50}
+  validates :name, presence: true, length: {maximum: 50}
 
-  validates :email, presence:   true,
-                    length:     { maximum: 255},
-                    format:     { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  validates :email, presence: true,
+            length: {maximum: 255},
+            format: {with: VALID_EMAIL_REGEX},
+            uniqueness: {case_sensitive: false}
 
   has_secure_password
 
   validates :password, presence: true,
-                       length: { minimum: 6 },
-                       allow_nil: true
+            length: {minimum: 6},
+            allow_nil: true
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+               BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  def sum_tip_prices
+    tips.sum(:price)
   end
 
   # Returns a random token.
@@ -55,7 +59,7 @@ class User < ApplicationRecord
 
   # Activates an account.
   def activate
-    update_attribute(:activated,    true)
+    update_attribute(:activated, true)
     update_attribute(:activated_at, Time.zone.now)
   end
 
@@ -67,7 +71,7 @@ class User < ApplicationRecord
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_digest, User.digest(reset_token))
     update_attribute(:reset_sent_at, Time.zone.now)
   end
 
@@ -83,14 +87,14 @@ class User < ApplicationRecord
 
   private
 
-    # Converts email to all lower-case.
-    def downcase_email
-      self.email = email.downcase
-    end
+  # Converts email to all lower-case.
+  def downcase_email
+    self.email = email.downcase
+  end
 
-    # Creates and assigns the activation token and digest.
-    def create_activation_digest
-      self.activation_token  = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  # Creates and assigns the activation token and digest.
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end

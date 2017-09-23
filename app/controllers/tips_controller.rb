@@ -11,7 +11,7 @@ class TipsController < ApplicationController
       redirect_to edit_game_url
     elsif @game.state == 'closed'
       flash[:warning] = 'Spiel geschlossen'
-      redirect_to games_path
+      redirect_to game_path
     end
   end
 

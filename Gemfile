@@ -51,6 +51,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rails-controller-testing', '0.1.1'
   gem 'sqlite3', '1.3.12'
+  gem 'textbelt'
 end
 
 group :test do
