@@ -5,7 +5,7 @@
   <% end %>
   <td> <%= @place %> </td>
   <td> <%= link_to user.name, user %> </td>
-  <td> <%= user.sum_tip_prices.to_s + ' €'%> </td>
+  <td> <%= user.tips_sum.to_s + ' €'%> </td>
   <% if current_user.admin? %>
     <td> <%= user.sum_money_in.to_s + ' €'%> </td>
     <td> <%= (user.sum_money_in-user.sum_money_out).to_s + ' €'%> </td>
